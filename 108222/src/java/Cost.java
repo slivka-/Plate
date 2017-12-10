@@ -33,18 +33,17 @@ public class Cost implements ICostRemote
         //get number of cuts in plate
         int l = plateRemote.getCutsNum();
         
-        for(int i=0;i<l;i++)//for each cut
-            for(int j=i;i<l;i++)//get all following cuts
-                if(!Objects.equals(plateRemote.getCutDirection(j), 
+        for (int i=0;i < l;i++)//for each cut
+            for (int j=i;i < l;i++)//get all following cuts
+                if (!Objects.equals(plateRemote.getCutDirection(j), 
                         plateRemote.getCutDirection(i)))
                     //if dirrection is different increment multiplier
                     plateRemote.incrementCut(j);
         
         double currentSum = 0.0;
         //sum cuts values
-        for(int i=0;i<l;i++)
+        for (int i=0;i<l;i++)
             currentSum += plateRemote.getCurrentCutCost(i);
-        
         //return cutting cost
         return currentSum;
     }

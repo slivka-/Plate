@@ -52,21 +52,21 @@ public class AppClient
             //lookup cost remote
             costRemote = (ICostRemote)ctx.lookup(COSTLOOKUP);
         }
-        catch(NamingException ex)
+        catch (NamingException ex)
         {
             //print naming exceptions
             System.out.println("Lookup failed");
             System.out.println(ex);
         }
         //if data source is found
-        if(dataSource != null)
+        if (dataSource != null)
         {
             Boolean plateInitialized = true;
             //establish connection to data source
-            try(Connection c = dataSource.getConnection())
+            try (Connection c = dataSource.getConnection())
             {
                 //create new statement
-                try(Statement s = c.createStatement())
+                try (Statement s = c.createStatement())
                 {
                     //complete query string
                     String query = String.format(QUERY_STRING,tableName);
@@ -79,14 +79,14 @@ public class AppClient
                     }
                 }
             }
-            catch(SQLException ex)
+            catch (SQLException ex)
             {
                 plateInitialized = false;
                 //print sql exceptions
                 System.out.println(ex);
             }
             //check for errors in plate initialization
-            if(plateInitialized)
+            if (plateInitialized)
             {
                 //inject dependency to cost remote
                 costRemote.setPlateReference(plateRemote);
@@ -112,9 +112,9 @@ public class AppClient
     private static void addCut(float x, float y)
     {
         //if x plane, create cut with truth side, otherwise false side
-        if(x>0)
+        if (x > 0)
             plateRemote.addCut(true, x);
-        else if(y>0)
+        else if (y > 0)
             plateRemote.addCut(false, y);
     }
 }

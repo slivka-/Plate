@@ -78,7 +78,7 @@ public class Plate implements IPlateRemote
         @Override
         public int compare(Cut o1, Cut o2)
         {
-            return (int)Math.signum(o2.cost-o1.cost);
+            return (int)Math.signum(o2.cost - o1.cost);
         }
     } 
                 
